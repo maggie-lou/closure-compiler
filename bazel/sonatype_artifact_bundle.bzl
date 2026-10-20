@@ -90,8 +90,8 @@ def _sonatype_artifact_bundle(ctx):
     ctx.actions.run_shell(
         outputs = [bundle],
         inputs = files_to_bundle,
-        command = java_home + "/bin/jar cf $@",
-        arguments = [bundle.path] + bundle_file_args,
+        command = java_home + "/bin/jar --create --file $@",
+        arguments = [bundle.path, "--date=1980-01-01T00:00:02Z"] + bundle_file_args,
         mnemonic = "SonatypeBundle",
     )
 
